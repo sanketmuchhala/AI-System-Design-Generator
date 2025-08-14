@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>System Architecture Designer</h1>
+                    <p>Generate professional system diagrams with AI</p>
+                </div>
+                <div class="theme-toggle">
+                    <button id="themeToggle" class="theme-toggle-btn" title="Toggle theme">
+                        <span class="theme-icon light-icon">☀</span>
+                        <span class="theme-icon dark-icon">☾</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-layout">
+            <!-- Control Panel -->
+            <aside class="control-panel">
+                <!-- API Key Section - Compact -->
+                <div class="api-section">
+                    <input type="password" id="apiKey" placeholder="Enter Gemini API Key" class="api-input">
+                    <button type="button" id="toggleApiKey" class="toggle-btn">Show</button>
+                </div>
+
+                <!-- System Description -->
+                <div class="description-section">
+                    <textarea 
+                        id="systemDescription" 
+                        placeholder="Describe your system architecture..."
+                        rows="3"
+                    ></textarea>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-section">
+                    <button id="generateBtn" class="generate-btn">
+                        <span class="btn-text">Generate</span>
+                        <span class="loading-spinner" style="display: none;">Loading...</span>
+                    </button>
+                    <button id="clearBtn" class="clear-btn">Clear</button>
+                </div>
+
+                <!-- Mermaid Code Editor - Expanded -->
+                <div class="code-section">
+                    <div class="code-header">
+                        <span class="code-label">Mermaid Code</span>
+                        <div class="code-actions">
+                            <button id="copyCodeBtn" class="action-btn">Copy</button>
+                            <button id="formatCodeBtn" class="action-btn">Format</button>
+                        </div>
+                    </div>
+                    <textarea id="mermaidCodeEditor" placeholder="Generated Mermaid code will appear here. You can edit it live!" rows="12"></textarea>
+                </div>
+
+                <!-- Error Section -->
+                <section class="error-section" style="display: none;">
+                    <div class="error-message">
+                        <span class="error-icon">×</span>
+                        <span id="errorText"></span>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Main Diagram Area -->
+            <div class="diagram-area">
+                <div class="diagram-panel">
+                    <div class="panel-header">
+                        <h3>System Diagram</h3>
+                        <div class="panel-actions">
+                            <div class="zoom-controls">
+                                <button id="zoomOutBtn" class="action-btn zoom-btn">-</button>
+                                <span id="zoomLevel" class="zoom-level">100%</span>
+                                <button id="zoomInBtn" class="action-btn zoom-btn">+</button>
+                                <button id="zoomResetBtn" class="action-btn zoom-btn">Reset</button>
+                            </div>
+                            <div class="action-divider"></div>
+                            <button id="downloadSvgBtn" class="action-btn">SVG</button>
+                            <button id="downloadPngBtn" class="action-btn">PNG</button>
+                            <button id="refreshDiagramBtn" class="action-btn">Refresh</button>
+                        </div>
+                    </div>
+                    <div class="diagram-viewport">
+                        <div id="diagramContainer" class="diagram-container">
+                            <div class="diagram-placeholder">
+                                <div class="placeholder-content">
+                                    <span class="placeholder-icon">⚡</span>
+                                    <p>Generate or edit Mermaid code to see your diagram here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built using Google Gemini API and Mermaid.js</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
