@@ -22,33 +22,33 @@ Transform your system descriptions into professional diagrams using AI and Merma
 
 ```mermaid
 graph TB
-    subgraph "User Interface"
-        UI[Web Interface<br/>HTML/CSS/JS]
-        Input[System Description Input]
-        CodeEditor[Live Code Editor]
-        DiagramDisplay[Diagram Preview]
-        ThemeToggle[Theme Toggle<br/>Light/Dark]
+    subgraph "User Interface Layer"
+        UI["🌐 Web Interface<br/>HTML/CSS/JavaScript"]
+        Input["📝 System Description<br/>Text Input"]
+        CodeEditor["✏️ Live Code Editor<br/>Mermaid Syntax"]
+        DiagramDisplay["📊 Diagram Preview<br/>Real-time Rendering"]
+        ThemeToggle["🌙 Theme Toggle<br/>Light/Dark Mode"]
     end
     
-    subgraph "Core Components"
-        App[SystemDesignGenerator<br/>Main Controller]
-        API[Gemini API Client]
-        Mermaid[Mermaid.js Renderer]
-        Storage[Local Storage<br/>API Key & Theme]
+    subgraph "Application Core"
+        App["🎮 Main Controller<br/>SystemDesignGenerator"]
+        API["🔌 API Client<br/>Gemini Integration"]
+        Mermaid["🎨 Mermaid Renderer<br/>Diagram Engine"]
+        Storage["💾 Local Storage<br/>API Key & Settings"]
     end
     
-    subgraph "External Services"
-        Gemini[Google Gemini 1.5 Flash<br/>AI Diagram Generation]
+    subgraph "External AI Service"
+        Gemini["🤖 Google Gemini 1.5 Flash<br/>AI Diagram Generation"]
     end
     
-    subgraph "Output & Export"
-        SVG[SVG Export]
-        PNG[PNG Export]
-        CodeCopy[Code Copy]
+    subgraph "Export & Output"
+        SVG["📄 SVG Export<br/>Vector Format"]
+        PNG["🖼️ PNG Export<br/>Image Format"]
+        CodeCopy["📋 Code Copy<br/>Mermaid Syntax"]
     end
     
-    %% User Flow
-    User[User] --> Input
+    %% Main User Flow
+    User["👤 User"] --> Input
     Input --> App
     App --> API
     API --> Gemini
@@ -62,28 +62,30 @@ graph TB
     App --> Mermaid
     Mermaid --> DiagramDisplay
     
-    %% Theme & Storage
+    %% Theme Management
     User --> ThemeToggle
     ThemeToggle --> App
     App --> Storage
     Storage --> UI
     
-    %% Export Flow
+    %% Export Options
     User --> DiagramDisplay
     DiagramDisplay --> SVG
     DiagramDisplay --> PNG
     DiagramDisplay --> CodeCopy
     
-    %% Styling
-    classDef userInterface fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef coreComponents fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef externalServices fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef outputExport fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    %% Enhanced Styling
+    classDef userInterface fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    classDef coreComponents fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,color:#000
+    classDef externalServices fill:#fff8e1,stroke:#f57c00,stroke-width:3px,color:#000
+    classDef outputExport fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,color:#000
+    classDef userNode fill:#ffebee,stroke:#d32f2f,stroke-width:3px,color:#000
     
     class UI,Input,CodeEditor,DiagramDisplay,ThemeToggle userInterface
     class App,API,Mermaid,Storage coreComponents
     class Gemini externalServices
     class SVG,PNG,CodeCopy outputExport
+    class User userNode
 ```
 
 ## Quick Start
