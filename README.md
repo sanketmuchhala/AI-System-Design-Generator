@@ -21,7 +21,7 @@ Transform your system descriptions into professional diagrams using AI and Merma
 ## Quick Start
 
 ### Option 1: Use the Live Demo
-Visit the live application: [AI System Design Generator](https://your-username.github.io/ai-system-designer/)
+Visit the live application: [AI System Design Generator](https://sanketmuchhala.github.io/AI-System-Design-Generator/)
 
 ### Option 2: Fork and Deploy
 1. **Fork this repository** to your GitHub account
