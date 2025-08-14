@@ -18,6 +18,74 @@ Transform your system descriptions into professional diagrams using AI and Merma
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
 - **GitHub Pages Ready**: Static deployment with no build process required
 
+## System Design
+
+```mermaid
+graph TB
+    subgraph "User Interface"
+        UI[Web Interface<br/>HTML/CSS/JS]
+        Input[System Description Input]
+        CodeEditor[Live Code Editor]
+        DiagramDisplay[Diagram Preview]
+        ThemeToggle[Theme Toggle<br/>Light/Dark]
+    end
+    
+    subgraph "Core Components"
+        App[SystemDesignGenerator<br/>Main Controller]
+        API[Gemini API Client]
+        Mermaid[Mermaid.js Renderer]
+        Storage[Local Storage<br/>API Key & Theme]
+    end
+    
+    subgraph "External Services"
+        Gemini[Google Gemini 1.5 Flash<br/>AI Diagram Generation]
+    end
+    
+    subgraph "Output & Export"
+        SVG[SVG Export]
+        PNG[PNG Export]
+        CodeCopy[Code Copy]
+    end
+    
+    %% User Flow
+    User[User] --> Input
+    Input --> App
+    App --> API
+    API --> Gemini
+    Gemini --> App
+    App --> Mermaid
+    Mermaid --> DiagramDisplay
+    
+    %% Code Editing Flow
+    User --> CodeEditor
+    CodeEditor --> App
+    App --> Mermaid
+    Mermaid --> DiagramDisplay
+    
+    %% Theme & Storage
+    User --> ThemeToggle
+    ThemeToggle --> App
+    App --> Storage
+    Storage --> UI
+    
+    %% Export Flow
+    User --> DiagramDisplay
+    DiagramDisplay --> SVG
+    DiagramDisplay --> PNG
+    DiagramDisplay --> CodeCopy
+    
+    %% Styling
+    classDef userInterface fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef coreComponents fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef externalServices fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef outputExport fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class UI,Input,CodeEditor,DiagramDisplay,ThemeToggle userInterface
+    class App,API,Mermaid,Storage coreComponents
+    class Gemini externalServices
+    class SVG,PNG,CodeCopy outputExport
+```
+
 ## Quick Start
 
 ### Option 1: Use the Live Demo
