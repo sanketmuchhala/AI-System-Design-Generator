@@ -5,6 +5,10 @@ Transform your system descriptions into professional diagrams using AI and Merma
 [![Deploy to GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?style=flat-square)](https://github.com/your-username/ai-system-designer/deployments)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
+<img width="1680" height="1050" alt="Screenshot 2025-09-14 at 12 10 34 AM" src="https://github.com/user-attachments/assets/9cb2172b-4b81-47a9-95e1-1a6512fe8664" />
+<img width="1680" height="1050" alt="Screenshot 2025-09-14 at 12 10 49 AM" src="https://github.com/user-attachments/assets/0f72751d-447b-4c5e-80dc-b698e9a16e58" />
+
+
 ## Features
 
 - **AI-Powered Generation**: Uses Google Gemini API to convert natural language descriptions into Mermaid diagrams
