@@ -2,7 +2,6 @@
 
 class SystemDesignGenerator {
     constructor() {
-        this.apiKey = '';
         this.currentMermaidCode = '';
         this.isGenerating = false;
         this.liveUpdateTimeout = null;
@@ -17,7 +16,6 @@ class SystemDesignGenerator {
 
     init() {
         this.initializeTheme();
-        this.loadApiKey();
         this.setupEventListeners();
         this.initializeMermaid();
         this.loadExamples();
@@ -35,45 +33,8 @@ class SystemDesignGenerator {
         }
     }
 
-    // API Key Management
-    loadApiKey() {
-        const savedKey = localStorage.getItem('gemini_api_key');
-        if (savedKey) {
-            this.apiKey = this.decryptApiKey(savedKey);
-            document.getElementById('apiKey').value = this.apiKey;
-        }
-    }
-
-    saveApiKey() {
-        const apiKeyInput = document.getElementById('apiKey');
-        this.apiKey = apiKeyInput.value.trim();
-
-        if (this.apiKey) {
-            localStorage.setItem('gemini_api_key', this.encryptApiKey(this.apiKey));
-        } else {
-            localStorage.removeItem('gemini_api_key');
-        }
-    }
-
-    // Basic encryption/decryption for API key (security through obscurity)
-    encryptApiKey(key) {
-        return btoa(key.split('').reverse().join(''));
-    }
-
-    decryptApiKey(encryptedKey) {
-        try {
-            return atob(encryptedKey).split('').reverse().join('');
-        } catch (e) {
-            return '';
-        }
-    }
-
     // Event Listeners Setup
     setupEventListeners() {
-        // API Key toggle
-        document.getElementById('toggleApiKey').addEventListener('click', this.toggleApiKeyVisibility.bind(this));
-        document.getElementById('apiKey').addEventListener('input', this.saveApiKey.bind(this));
-
         // Generate button
         document.getElementById('generateBtn').addEventListener('click', this.generateDiagram.bind(this));
 
@@ -124,20 +85,6 @@ class SystemDesignGenerator {
     initializeMermaid() {
         // Set initial theme based on current theme
         this.updateMermaidTheme();
-    }
-
-    // UI Helper Functions
-    toggleApiKeyVisibility() {
-        const apiKeyInput = document.getElementById('apiKey');
-        const toggleBtn = document.getElementById('toggleApiKey');
-
-        if (apiKeyInput.type === 'password') {
-            apiKeyInput.type = 'text';
-            toggleBtn.textContent = 'Hide';
-        } else {
-            apiKeyInput.type = 'password';
-            toggleBtn.textContent = 'Show';
-        }
     }
 
     // Handle live code editing
@@ -436,23 +383,21 @@ class SystemDesignGenerator {
         }
 
         const descriptionElement = document.getElementById('systemDescription');
-        const apiKeyElement = document.getElementById('apiKey');
 
-        if (!descriptionElement || !apiKeyElement) {
+        if (!descriptionElement) {
             console.error('Required elements not found');
             this.showError('Interface elements not found. Please refresh the page.');
             return;
         }
 
-        const description = descriptionElement.value.trim();
-        const apiKey = apiKeyElement.value.trim();
+        let description = descriptionElement.value.trim();
 
         console.log('Description:', description ? 'Present' : 'Empty');
-        console.log('API Key:', apiKey ? 'Present' : 'Empty');
 
         // Validation
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
         if (!apiKey) {
-            this.showError('Please enter your Google Gemini API key');
+            this.showError('API Key not configured in environment variables.');
             return;
         }
 

@@ -45,7 +45,8 @@ jobs:
       - name: Build React app
         if: steps.detect.outputs.type == 'react'
         run: npm run build
-        
+        env:
+          VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
         
