@@ -1,4 +1,4 @@
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent'
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent'
 
 export async function generateMermaidCode(description: string, apiKey: string): Promise<string> {
   const systemPrompt = `You are a system architecture expert. Generate ONLY valid Mermaid diagram code for the described system. 
@@ -53,13 +53,13 @@ System description: ${description}`
   }
 
   const data = await response.json()
-  
+
   if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
     throw new Error('Invalid response from Gemini API')
   }
 
   const generatedText = data.candidates[0].content.parts[0].text
-  
+
   // Clean up the response - remove markdown code blocks if present
   let mermaidCode = generatedText
     .replace(/```mermaid\n?/gi, '')
@@ -76,7 +76,7 @@ System description: ${description}`
 
 function isValidMermaidCode(code: string): boolean {
   const trimmedCode = code.trim()
-  
+
   if (!trimmedCode || trimmedCode.length < 5) {
     return false
   }
